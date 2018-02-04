@@ -104,13 +104,17 @@ public class Polka extends JPanel{
             //dodaje go do listy ktorzy przeczytali tak aby ponownie nie mogl jej przeczytac...
             Wiadomosc wiadomosc = listaWiadomosci.getFirst();
 
+            //pobranie kropek oznaczajacych producentow aby zmienic kolor gdy konsument ja przeczytal
+            JLabel[] kropkiKonsumentow = wiadomosc.pobierzKonsumentowKropki();
+            kropkiKonsumentow[konsument.pobierzNumer()-1].setForeground(Color.GREEN);
+            ////////////////////////////////////////////////////////////////////////////////////////
+
             komunikat.setText(konsument + " czyta wiadomosc: " + wiadomosc);
             System.out.println(konsument + " czyta wiadomosc: " + wiadomosc);
 
 
             if (konsumenciKtorzyPrzeczytaliWiadomosc.size() >= iloscKonsumentow) {
                 System.out.println("Przeczytana ->"+wiadomosc+"<- ZNIKA.");
-//                listaWiadomosci.remove(wiadomosc);
                 listaWiadomosci.removeFirst();
                 remove(wiadomosc);
 

@@ -28,6 +28,10 @@ public class Konsument  implements Runnable {
         }
     }
 
+    public int pobierzNumer(){
+        return nr;
+    }
+
     @Override
     public String toString() {
         return "Konsument: "+nr;

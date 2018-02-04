@@ -1,0 +1,5 @@
+Na razie max liczba konsumentow - 10 zeby dobrze wyswietlic kropki.
+Powiekszysc wiadomosci i moze usunac srokowy panel bo chyba nie potrzebny
+Jezeli sie da to dodać nr wiadomosci do tła obrazku na wiadomosc ale nw jak zeby nie mieszać nic z jego przodu
+
+Jak konsument odczyta wiadomosc jego kropka zmienia sie na kolor zielony.

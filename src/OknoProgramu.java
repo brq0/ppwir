@@ -46,7 +46,7 @@ public class OknoProgramu extends JFrame {
         add(dolEkranuKomunikaty, BorderLayout.SOUTH);
 
 
-        new Producent(polkaNaWiadomosci, 1);
+        new Producent(polkaNaWiadomosci, 1, liczbaKonsumentow);
         for(int i=1; i<=liczbaKonsumentow; i++){
             new Konsument(polkaNaWiadomosci, i);
         }
