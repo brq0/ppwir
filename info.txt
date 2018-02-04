@@ -3,3 +3,11 @@ Powiekszysc wiadomosci i moze usunac srokowy panel bo chyba nie potrzebny
 Jezeli sie da to dodać nr wiadomosci do tła obrazku na wiadomosc ale nw jak zeby nie mieszać nic z jego przodu
 
 Jak konsument odczyta wiadomosc jego kropka zmienia sie na kolor zielony.
+
+
+POLKA MOZE MIEC MAKSYMALNA POJEMNOSC = 70 (DLA WIDOCZNOSCI) PRZY CZYM
+    - POWYZEJ 40 POJEMNOSC POLKI, MAKSYMALNA LICZBA KONSUMENTOW = 10 (AZEBY BYLO TO WIDOCZNE W WIADOMOSCI)
+    - POWYZEJ 20 POJEMNOSC POLKI, MAKSYMALNA LICZBA KONSUMENTOW = 24 (AZEBY BYLO TO WIDOCZNE W WIADOMOSCI)
+    - POWYZEJ 13 POJEMNOSC POLKI, MAKSYMALNA LICZBA KONSUMENTOW = 50 (AZEBY BYLO TO WIDOCZNE W WIADOMOSCI)
+    - MNIEJ NIZ 13 POJEMNOSC POLKI, MAX KONSUMENTOW = 80.
+

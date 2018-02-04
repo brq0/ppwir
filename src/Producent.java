@@ -30,8 +30,8 @@ public class Producent implements Runnable {
     public void run() {
         for(int i=1; ; i++){
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(200,3000));
-                polka.dodajWiadomosc(new Wiadomosc(i,iloscKonsumentow));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(200,500));
+                polka.dodajWiadomosc(new Wiadomosc(i,iloscKonsumentow, polka.pobierzPojemnoscPolki()));
             }catch (InterruptedException exc){}
 
         }

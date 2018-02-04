@@ -20,7 +20,7 @@ public class Konsument  implements Runnable {
     public void run() {
         for (int i = 100; ; i++) {
             try {
-                Thread.sleep(ThreadLocalRandom.current().nextInt(500, 5000));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(3000, 5000));
                 polka.czytajWiadomosc(this);
             } catch (InterruptedException exc) {
             }

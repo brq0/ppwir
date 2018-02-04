@@ -2,6 +2,7 @@ import javafx.scene.layout.BorderPane;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * Created by Bartek on 03.01.2018.
@@ -19,6 +20,7 @@ public class OknoProgramu extends JFrame {
         setLocation(200,100);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        setIconImage(Toolkit.getDefaultToolkit().getImage("img" + File.separator +"pwirICO.jpg"));
 
 
 
@@ -41,8 +43,8 @@ public class OknoProgramu extends JFrame {
         polkaNaWiadomosci = new Polka(pojemnoscBufora, komunikatDol, liczbaKonsumentow);
 
         /** DODANIE / PODZIELENIE EKRANU NA 3 CZESCI*/
-        add(polkaNaWiadomosci, BorderLayout.NORTH);
-        add(srodekEkranu, BorderLayout.CENTER);
+        add(polkaNaWiadomosci, BorderLayout.CENTER);
+//        add(srodekEkranu, BorderLayout.CENTER);
         add(dolEkranuKomunikaty, BorderLayout.SOUTH);
 
 

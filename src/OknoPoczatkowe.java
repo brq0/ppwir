@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 
 
@@ -9,8 +11,8 @@ public class OknoPoczatkowe extends JFrame{
 
     JPanel  centerPanel, northPanel;
     JLabel information, consuments, producents, size, semaphore, waitNotify;
-    JButton next;
-    JTextField producentsQuantity, consumentsQuantity, bufforSize;
+    JButton nextPrzycisk;
+    JTextField iloscProducentow, iloscKonsumentow, pojemnoscPolki;
     JRadioButton semaphoreSelected, waitNotifySelected;
 
 
@@ -40,11 +42,46 @@ public class OknoPoczatkowe extends JFrame{
     /*
         Dodanie przycisku do dolnej części ramki
      */
-        next = new JButton("Dalej...");
+        nextPrzycisk = new JButton("Dalej...");
 
-        next.addActionListener(new buttonPressed(this));
+        nextPrzycisk.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(sprawdzPoprawnoscDanych()){
+                    System.out.println("go");
+                    new OknoProgramu(Integer.valueOf(pojemnoscPolki.getText()), Integer.valueOf(iloscProducentow.getText()), Integer.valueOf(iloscKonsumentow.getText()));
+                }else{
+                    System.out.println("Wprowadz poprawne dane lub zastosuj sie do instrukcji");
+                    JOptionPane.showMessageDialog(null,"Wprowadz poprawne dane lub zastosuj sie do instrukcji",
+                            "ERROR", JOptionPane.INFORMATION_MESSAGE);
+                    iloscKonsumentow.setText("");
+                    iloscProducentow.setText("");
+                    pojemnoscPolki.setText("");
+                }
+            }
+        });
 
-        add(next, BorderLayout.SOUTH);
+        add(nextPrzycisk, BorderLayout.SOUTH);
+    }
+
+    private boolean sprawdzPoprawnoscDanych() {
+         if((semaphoreSelected.isSelected() || waitNotifySelected.isSelected()) &&
+            (!iloscProducentow.getText().equals("") && Integer.valueOf(iloscProducentow.getText()) >= 1)  &&
+            (!iloscKonsumentow.getText().equals("") && Integer.valueOf(iloscKonsumentow.getText()) >= 1 && Integer.valueOf(iloscKonsumentow.getText()) < 71) &&
+            (!pojemnoscPolki.getText().equals("") && Integer.valueOf(pojemnoscPolki.getText()) >= 1)){
+                return true;
+        }
+        else return false;
+    }
+
+    private void initNorthPanel() {
+    /*
+       Dodanie etykiety do górnej części ramki
+    */
+        northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        information = new JLabel("Menu konfiguracji uruchomienia programu");
+        northPanel.add(information);
+        add(northPanel, BorderLayout.NORTH);
     }
 
     private void initCenterPanel() {
@@ -57,16 +94,16 @@ public class OknoPoczatkowe extends JFrame{
         semaphore = new JLabel("Użycie semafora");
         waitNotify = new JLabel("Użycie wait, notify");
 
-        producentsQuantity = new JTextField();
-        consumentsQuantity = new JTextField();
-        bufforSize = new JTextField();
+        iloscProducentow = new JTextField("");
+        iloscKonsumentow = new JTextField("");
+        pojemnoscPolki = new JTextField("");
 
         semaphoreSelected = new JRadioButton();
-        semaphoreSelected.setSelected(true);
+        semaphoreSelected.setSelected(false);
         semaphoreSelected.addActionListener(new radioButtonChange('s'));
 
         waitNotifySelected = new JRadioButton();
-        waitNotifySelected.setSelected(false);
+        waitNotifySelected.setSelected(true);
         waitNotifySelected.addActionListener(new radioButtonChange('w'));
 
         centerPanel = new JPanel();
@@ -90,9 +127,9 @@ public class OknoPoczatkowe extends JFrame{
                         )
                         .addGroup(
                                 layout.createParallelGroup()
-                                        .addComponent(consumentsQuantity)
-                                        .addComponent(producentsQuantity)
-                                        .addComponent(bufforSize)
+                                        .addComponent(iloscKonsumentow)
+                                        .addComponent(iloscProducentow)
+                                        .addComponent(pojemnoscPolki)
                                         .addComponent(semaphoreSelected)
                                         .addComponent(waitNotifySelected)
                         )
@@ -105,17 +142,17 @@ public class OknoPoczatkowe extends JFrame{
                         .addGroup(
                                 layout.createParallelGroup()
                                         .addComponent(consuments)
-                                        .addComponent(consumentsQuantity)
+                                        .addComponent(iloscKonsumentow)
                         )
                         .addGroup(
                                 layout.createParallelGroup()
                                         .addComponent(producents)
-                                        .addComponent(producentsQuantity)
+                                        .addComponent(iloscProducentow)
                         )
                         .addGroup(
                                 layout.createParallelGroup()
                                         .addComponent(size)
-                                        .addComponent(bufforSize)
+                                        .addComponent(pojemnoscPolki)
                         )
                         .addGroup(
                                 layout.createParallelGroup()
@@ -133,42 +170,7 @@ public class OknoPoczatkowe extends JFrame{
         add(centerPanel, BorderLayout.CENTER);
     }
 
-    private void initNorthPanel() {
-    /*
-       Dodanie etykiety do górnej części ramki
-    */
-        northPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        information = new JLabel("Menu konfiguracji uruchomienia programu");
-        northPanel.add(information);
-        add(northPanel, BorderLayout.NORTH);
-    }
-
-    private class buttonPressed implements ActionListener {
-
-        JFrame frame;
-
-        public buttonPressed(JFrame frame){
-            this.frame = frame;
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Click");
-            Integer howManyConsuments, howManyProducents, howBigBuffor;
-
-            howManyConsuments = Integer.valueOf(consumentsQuantity.getText());
-            howManyProducents = Integer.valueOf(producentsQuantity.getText());
-            howBigBuffor = Integer.valueOf(bufforSize.getText());
-
-            frame.dispose();
-
-            new OknoProgramu(howBigBuffor, howManyProducents, howManyConsuments);
-
-        }
-    }
-
     private class radioButtonChange implements ActionListener{
-
         char whichOne;
 
         public radioButtonChange(char whichOne){

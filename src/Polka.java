@@ -32,13 +32,17 @@ public class Polka extends JPanel{
         setLayout(new FlowLayout((FlowLayout.RIGHT)));
         if(pojemnosc<11) setPreferredSize(new Dimension(800,60));
         else setPreferredSize(new Dimension(800,120));
-        setBackground(Color.BLUE);
+//        setBackground(Color.BLUE);
 
 
     }
 
     public int iloscWiadomosci(){
         return listaWiadomosci.size();
+    }
+
+    public int pobierzPojemnoscPolki(){
+        return POJEMNOSC_POLKI;
     }
 
     synchronized void dodajWiadomosc(Wiadomosc wiadomosc){
@@ -121,6 +125,13 @@ public class Polka extends JPanel{
                 komunikat.setText("WSZYSCY KONSUMENCI PRZECZYTALI WIADOMOSC: " + wiadomosc + " ZOSTAJE ONA USUNIETA.");
                 konsumenciKtorzyPrzeczytaliWiadomosc = new LinkedList<>();
 
+                if(producentCzeka){
+                    try {
+                        Thread.sleep(1000);
+                    }catch (InterruptedException exc){}
+                    producentCzeka = false;
+                    notify();
+                }
                 if(konsumentCzeka){
                     konsumentCzeka = false;
                     notifyAll();
@@ -128,16 +139,6 @@ public class Polka extends JPanel{
             }
         }
 
-
-
-
-        if(producentCzeka){
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException exc){}
-            producentCzeka = false;
-            notify();
-        }
 
 
         validate();
