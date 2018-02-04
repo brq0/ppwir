@@ -13,7 +13,7 @@ public class OknoProgramu extends JFrame {
     private JLabel komunikatDol;
 
 
-    public OknoProgramu(int pojemnoscBufora, int liczbaProducentow, int liczbaKonsumentow){
+    public OknoProgramu(int pojemnoscBufora, int liczbaProducentow, int liczbaKonsumentow, boolean semaphore){
         setTitle("PPWIR");
         setVisible(true);
         setSize(830,500);
@@ -37,14 +37,14 @@ public class OknoProgramu extends JFrame {
         dolEkranuKomunikaty.add(komunikatDol);
 
 
-        /** MIEJSCE NA POLKE TAM GDZIE BEDZIE SIE ZNAJODWAC POLKA Z WIADOMOSCIAMI
-         * MAKSYMALNIE 20 MIEJSC ZEBY WYGLADALO JAKOS...
-         * */
-        polkaNaWiadomosci = new Polka(pojemnoscBufora, komunikatDol, liczbaKonsumentow);
+        if(semaphore){
+            polkaNaWiadomosci = new PolkaSemaphore(pojemnoscBufora, komunikatDol, liczbaKonsumentow);
+        }else {
+            polkaNaWiadomosci = new PolkaWaitNotify(pojemnoscBufora, komunikatDol, liczbaKonsumentow);
+        }
 
-        /** DODANIE / PODZIELENIE EKRANU NA 3 CZESCI*/
+        /** DODANIE / PODZIELENIE EKRANU NA 2 CZESCI - SRODEK I KOMUNIKATY*/
         add(polkaNaWiadomosci, BorderLayout.CENTER);
-//        add(srodekEkranu, BorderLayout.CENTER);
         add(dolEkranuKomunikaty, BorderLayout.SOUTH);
 
 

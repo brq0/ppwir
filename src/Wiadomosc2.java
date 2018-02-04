@@ -5,6 +5,13 @@ import java.io.File;
  * Created by Bartek on 03.01.2018.
  */
 public class Wiadomosc2 extends JLabel {
+    ////////////////////////////////////////////////
+    //                                            //
+    //  STARA WIADOMOSC NA RAZIE NIECH ZOSTANIE   //
+    //                                            //
+    ////////////////////////////////////////////////
+
+
     private int numer;
     private int iloscKonsumentow;
 
