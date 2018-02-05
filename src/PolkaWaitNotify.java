@@ -30,10 +30,6 @@ public class PolkaWaitNotify extends Polka {
         producentCzeka = false;
 
         setLayout(new FlowLayout((FlowLayout.RIGHT)));
-        if(pojemnosc<11) setPreferredSize(new Dimension(800,60));
-        else setPreferredSize(new Dimension(800,120));
-//        setBackground(Color.BLUE);
-
 
     }
 

@@ -23,7 +23,7 @@ public class Wiadomosc extends JPanel {
         JLabel nr = new JLabel(String.valueOf(numer));
         nr.setVerticalTextPosition(JLabel.CENTER);
         nr.setHorizontalTextPosition(JLabel.CENTER);
-//        add(nr);
+        add(nr);
 
         //rozne wielkosci wiadomosci dla danej polki
         if(pojemnoscPolki>=41){
