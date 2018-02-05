@@ -44,18 +44,19 @@ public class PolkaWaitNotify extends Polka {
     }
 
     @Override
-    public synchronized void dodajWiadomosc(Wiadomosc wiadomosc){
+    public synchronized void dodajWiadomosc(Producent producent, Wiadomosc wiadomosc){
         if(iloscWiadomosci() >= POJEMNOSC_POLKI){
             try {
                 producentCzeka = true;
-                komunikat.setText("PRODUCENT CZEKA. POLKA PELNA.");
-                System.out.println("PRODUCENT CZEKA. POLKA PELNA.");
+                komunikat.setText(producent +" CZEKA. POLKA PELNA.");
+                System.out.println(producent +" CZEKA. POLKA PELNA.");
                 wait();
             }catch (InterruptedException exc){}
         }
         listaWiadomosci.add(wiadomosc);
         add(wiadomosc);
-        komunikat.setText("PRODUCENT WYPRODUKOWAL WIADOMOSC: "+wiadomosc);
+        komunikat.setText(producent+" WYPRODUKOWAL WIADOMOSC: "+wiadomosc);
+        System.out.println(producent+" WYPRODUKOWAL WIADOMOSC: "+wiadomosc);
 
         if(konsumentCzeka){
             try {
@@ -73,13 +74,8 @@ public class PolkaWaitNotify extends Polka {
     public synchronized void czytajWiadomosc(Konsument konsument){
         if(iloscWiadomosci() <= 0){
             try {
-                //TUTAJ KAZDY KONSUMENT POWINIEN CZEKAC.
-                //
-                //
-                ///////////////////////////////////////
-
                 konsumentCzeka = true;
-                komunikat.setText(konsument+ " KONSUMENCI CZEKAJA. BRAK WIADOMOSCI W POLCE.");
+                komunikat.setText("KONSUMENCI CZEKAJA. BRAK WIADOMOSCI W POLCE.");
                 wait();
             }catch (InterruptedException exc){}
         }

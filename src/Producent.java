@@ -10,14 +10,6 @@ public class Producent implements Runnable {
     private JLabel komunikat;
     private int iloscKonsumentow;
 
-
-    public Producent(Polka polka, int nr) {
-        this.polka = polka;
-        this.nr = nr;
-        iloscKonsumentow = 0;
-
-        new Thread(this).start();
-    }
     public Producent(Polka polka, int nr, int iloscKonsumentow) {
         this.polka = polka;
         this.nr = nr;
@@ -30,10 +22,15 @@ public class Producent implements Runnable {
     public void run() {
         for(int i=1; ; i++){
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(200,500));
-                polka.dodajWiadomosc(new Wiadomosc(i,iloscKonsumentow, polka.pobierzPojemnoscPolki()));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(500,3000));
+                polka.dodajWiadomosc(this, new Wiadomosc(i,iloscKonsumentow, polka.pobierzPojemnoscPolki()));
             }catch (InterruptedException exc){}
 
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Producent: "+nr;
     }
 }

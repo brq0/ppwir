@@ -49,6 +49,7 @@ public class OknoPoczatkowe extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 if(sprawdzPoprawnoscDanych()){
                     new OknoProgramu(Integer.valueOf(pojemnoscPolki.getText()), Integer.valueOf(iloscProducentow.getText()), Integer.valueOf(iloscKonsumentow.getText()), semaphoreSelected.isSelected());
+                    setVisible(false);
                 }else{
                     JOptionPane.showMessageDialog(null,"Wprowadz poprawne dane lub zastosuj sie do instrukcji",
                             "ERROR", JOptionPane.INFORMATION_MESSAGE);
