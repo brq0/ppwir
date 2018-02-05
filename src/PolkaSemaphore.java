@@ -3,9 +3,6 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.concurrent.Semaphore;
 
-/**
- * Created by Bartek on 05.02.2018.
- */
 public class PolkaSemaphore extends Polka {
     private LinkedList<Wiadomosc> listaWiadomosci;
     //lista wiadomosci ZNAJDUJACYCH sie na polce
@@ -17,8 +14,8 @@ public class PolkaSemaphore extends Polka {
     private JLabel komunikat;
     final int POJEMNOSC_POLKI;
     private int iloscKonsumentow;
-    private Semaphore miejscaSemaphore,
-            przeczytanaWiadomoscSemaphore,
+    private Semaphore miejscaSemaphore,                     //semafor miejsc na polce
+            przeczytanaWiadomoscSemaphore,                  //semafor zwalniajacy producenta gdy wiadomosc zniknie
             konsumenciPojedynczejWiadomosciSemaphore;       //semafor pojedynczej wiadomosci rozny dla kazdej
                                                             //miejsc jst tyle ile konsumentow
                                                             //kazdy konsument pobiera jedno
@@ -93,6 +90,8 @@ public class PolkaSemaphore extends Polka {
                 } catch (InterruptedException exc) {
                 }
             }
+            validate();
+            repaint();
         }
     }
 
@@ -110,15 +109,21 @@ public class PolkaSemaphore extends Polka {
 
         }else{
             //jezeli polka jest pelna
-
-            // tutaj musi poczekać
-            //bo produkuje wiadomosci ktore przepadaja i dopiero jak przeczytaja konsumenci zeby zniknela
-            // pojawia sie nastepna z roznym numerem
             komunikat.setText(producent +" CZEKA. POLKA PELNA.");
             System.out.println(producent +" CZEKA. POLKA PELNA.");
 
             try{
-                przeczytanaWiadomoscSemaphore.acquire();
+//              zatrzymanie producentow wiadomosci zeby byly tworzone pokolei numerami
+//              nie zatrzymujac go po osiagnieciu max limit wiadomosci (pojemnosc polki)
+//              bylyby inne (wieksze) numery, gdyz producent przyszedlby z kolejna i odszedl, po czym wiadomosc by przepadla
+
+                if(przeczytanaWiadomoscSemaphore.availablePermits() > 0){
+                    przeczytanaWiadomoscSemaphore.acquire(przeczytanaWiadomoscSemaphore.availablePermits());
+                    //pobiera wszystko, bo konsumenci zwalniaja ten semafor za kazdym razem kiedy przeczytali wiadomosc
+                }
+                else przeczytanaWiadomoscSemaphore.acquire();
+
+
                 //czeka az konsument przeczyta, jezeli to zrobi to ponownie proboje dodac
                 dodajWiadomosc(producent, wiadomosc);
             }catch (InterruptedException exc){

@@ -4,9 +4,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-/**
- * Created by Bartek on 04.02.2018.
- */
+
 public class Wiadomosc extends JPanel {
     private int numer;
     private int iloscKonsumentow;
@@ -20,10 +18,13 @@ public class Wiadomosc extends JPanel {
         this.iloscKonsumentow = iloscKonsumentow;
         this.pojemnoscPolki = pojemnoscPolki;
 
+        setLayout(new FlowLayout(FlowLayout.CENTER, 10 ,5));
+
         JLabel nr = new JLabel(String.valueOf(numer));
         nr.setVerticalTextPosition(JLabel.CENTER);
         nr.setHorizontalTextPosition(JLabel.CENTER);
         add(nr);
+
 
         //rozne wielkosci wiadomosci dla danej polki
         if(pojemnoscPolki>=41){
@@ -44,7 +45,7 @@ public class Wiadomosc extends JPanel {
         }else if(pojemnoscPolki <= 12){
             //max 12, max konsumentow 80
             img = fitimage(new ImageIcon("."+ File.separator+"img"+File.separator+"wiadomosc3.png").getImage()
-                    , 182, 135);
+                    , 180, 135);
         }
 
 
@@ -58,6 +59,8 @@ public class Wiadomosc extends JPanel {
         for(int i=0; i<konsumenci.length; i++){
             konsumenci[i] = new JLabel("•");
             konsumenci[i].setForeground(Color.RED);
+            konsumenci[i].setVerticalTextPosition(JLabel.CENTER);
+            konsumenci[i].setHorizontalTextPosition(JLabel.CENTER);
             add(konsumenci[i]);
         }
     }
@@ -69,7 +72,7 @@ public class Wiadomosc extends JPanel {
     {
         //powieksza obrazek oraz zaokragla rogi
         int widthTemp = w;
-        if(w >= 182) widthTemp = widthTemp;
+        if(w >= 180)
         if(w >= 146) widthTemp = widthTemp - 5;
 
         BufferedImage bim=new BufferedImage(widthTemp,h,BufferedImage.TYPE_INT_ARGB);

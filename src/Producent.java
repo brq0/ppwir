@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by Bartek on 03.01.2018.
- */
 public class Producent implements Runnable {
     private Polka polka;
     private int nr;
@@ -22,7 +19,7 @@ public class Producent implements Runnable {
     public void run() {
         for(int i=1; ; i++){
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(2000,8000));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(1000,3000));
                 synchronized (polka) {
                     polka.dodajWiadomosc(this, new Wiadomosc(NumerWiadomosci.pobierzNumer(), iloscKonsumentow, polka.pobierzPojemnoscPolki()));
                 }

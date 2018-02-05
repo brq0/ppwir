@@ -64,13 +64,17 @@ public class OknoPoczatkowe extends JFrame{
     }
 
     private boolean sprawdzPoprawnoscDanych() {
-         if((semaphoreSelected.isSelected() || waitNotifySelected.isSelected()) &&
-            (!iloscProducentow.getText().equals("") && Integer.valueOf(iloscProducentow.getText()) >= 1)  &&
-            (!iloscKonsumentow.getText().equals("") && Integer.valueOf(iloscKonsumentow.getText()) >= 1 && Integer.valueOf(iloscKonsumentow.getText()) < 71) &&
-            (!pojemnoscPolki.getText().equals("") && Integer.valueOf(pojemnoscPolki.getText()) >= 1)){
+        try {
+            if ((semaphoreSelected.isSelected() || waitNotifySelected.isSelected()) &&
+                    (!iloscProducentow.getText().equals("") && Integer.valueOf(iloscProducentow.getText()) >= 1) &&
+                    (!iloscKonsumentow.getText().equals("") && Integer.valueOf(iloscKonsumentow.getText()) >= 1 && Integer.valueOf(iloscKonsumentow.getText()) < 78) &&
+                    (!pojemnoscPolki.getText().equals("") && Integer.valueOf(pojemnoscPolki.getText()) >= 1)) {
                 return true;
+            } else return false;
+        }catch (NumberFormatException exc){
+            //jezel inie jest liczba...
+            return false;
         }
-        else return false;
     }
 
     private void initNorthPanel() {

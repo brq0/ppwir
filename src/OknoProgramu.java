@@ -4,9 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-/**
- * Created by Bartek on 03.01.2018.
- */
 public class OknoProgramu extends JFrame {
     private JPanel srodekEkranu, dolEkranuKomunikaty;
     private Polka polkaNaWiadomosci;
@@ -33,7 +30,7 @@ public class OknoProgramu extends JFrame {
         dolEkranuKomunikaty = new JPanel();
         dolEkranuKomunikaty.setPreferredSize(new Dimension(800,20));
         dolEkranuKomunikaty.setBackground(Color.GREEN);
-        komunikatDol = new JLabel("GIT DZIALA");
+        komunikatDol = new JLabel("");
         dolEkranuKomunikaty.add(komunikatDol);
 
 
