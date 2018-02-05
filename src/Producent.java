@@ -22,9 +22,11 @@ public class Producent implements Runnable {
     public void run() {
         for(int i=1; ; i++){
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(500,3000));
-                polka.dodajWiadomosc(this, new Wiadomosc(i,iloscKonsumentow, polka.pobierzPojemnoscPolki()));
-            }catch (InterruptedException exc){}
+                Thread.sleep(ThreadLocalRandom.current().nextInt(2000,8000));
+                synchronized (polka) {
+                    polka.dodajWiadomosc(this, new Wiadomosc(NumerWiadomosci.pobierzNumer(), iloscKonsumentow, polka.pobierzPojemnoscPolki()));
+                }
+                }catch (InterruptedException exc){}
 
         }
     }
