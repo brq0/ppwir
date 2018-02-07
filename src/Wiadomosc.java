@@ -28,22 +28,22 @@ public class Wiadomosc extends JPanel {
 
         //rozne wielkosci wiadomosci dla danej polki
         if(pojemnoscPolki>=41){
-            //max 70 - max 10 konsumentow na tej wielkosci wiadomosci
+            //max 70 - max 5 konsumentow na tej wielkosci wiadomosci
             img = fitimage(new ImageIcon("."+ File.separator+"img"+File.separator+"wiadomosc3.png").getImage()
                     , 73, 54);
 
         }
         else if(pojemnoscPolki >= 21){
-            //MAX 40 - max konsumentow 24
+            //MAX 40 - max konsumentow 22
             img = fitimage(new ImageIcon("."+ File.separator+"img"+File.separator+"wiadomosc3.png").getImage()
                     , 110, 81);
         }
         else if(pojemnoscPolki >= 13){
-            //max 20 bedzie widoczne, max 50 konsumentow na tej wielkosci wiadomosci
+            //max 20 bedzie widoczne, max 38 konsumentow na tej wielkosci wiadomosci
             img = fitimage(new ImageIcon("."+ File.separator+"img"+File.separator+"wiadomosc3.png").getImage()
                     , 146, 108);
         }else if(pojemnoscPolki <= 12){
-            //max 12, max konsumentow 80
+            //max 12, max konsumentow 55
             img = fitimage(new ImageIcon("."+ File.separator+"img"+File.separator+"wiadomosc3.png").getImage()
                     , 180, 135);
         }

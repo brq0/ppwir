@@ -1,10 +1,8 @@
-import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Producent implements Runnable {
     private Polka polka;
     private int nr;
-    private JLabel komunikat;
     private int iloscKonsumentow;
 
     public Producent(Polka polka, int nr, int iloscKonsumentow) {
@@ -19,7 +17,7 @@ public class Producent implements Runnable {
     public void run() {
         for(int i=1; ; i++){
             try{
-                Thread.sleep(ThreadLocalRandom.current().nextInt(1000,3000));
+                Thread.sleep(ThreadLocalRandom.current().nextInt(1000,5000));
                 synchronized (polka) {
                     polka.dodajWiadomosc(this, new Wiadomosc(NumerWiadomosci.pobierzNumer(), iloscKonsumentow, polka.pobierzPojemnoscPolki()));
                 }

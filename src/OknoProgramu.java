@@ -5,25 +5,19 @@ import java.awt.*;
 import java.io.File;
 
 public class OknoProgramu extends JFrame {
-    private JPanel srodekEkranu, dolEkranuKomunikaty;
+    private JPanel dolEkranuKomunikaty;
     private Polka polkaNaWiadomosci;
     private JLabel komunikatDol;
 
 
     public OknoProgramu(int pojemnoscBufora, int liczbaProducentow, int liczbaKonsumentow, boolean semaphore){
-        setTitle("PPWIR");
+        setTitle("PWIR Bartosz Turek & Konrad Małocha");
         setVisible(true);
         setSize(830,500);
         setLocation(200,100);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setIconImage(Toolkit.getDefaultToolkit().getImage("img" + File.separator +"pwirICO.jpg"));
-
-
-
-        /** SRODEK EKRANU  -  TAM BEDA KONSUMENCI*/
-        srodekEkranu = new JPanel();
-        srodekEkranu.setPreferredSize(new Dimension(800,380));
 
 
         /** KOMUNIKATY ODNOSNIE TEGO CO SIE DZIEJE AKTUALNIE*/

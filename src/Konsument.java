@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Konsument  implements Runnable {

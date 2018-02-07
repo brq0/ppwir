@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.File;
 
 
@@ -67,7 +65,7 @@ public class OknoPoczatkowe extends JFrame{
         try {
             if ((semaphoreSelected.isSelected() || waitNotifySelected.isSelected()) &&
                     (!iloscProducentow.getText().equals("") && Integer.valueOf(iloscProducentow.getText()) >= 1) &&
-                    (!iloscKonsumentow.getText().equals("") && Integer.valueOf(iloscKonsumentow.getText()) >= 1 && Integer.valueOf(iloscKonsumentow.getText()) < 78) &&
+                    (!iloscKonsumentow.getText().equals("") && Integer.valueOf(iloscKonsumentow.getText()) >= 1 && Integer.valueOf(iloscKonsumentow.getText()) < 56) &&
                     (!pojemnoscPolki.getText().equals("") && Integer.valueOf(pojemnoscPolki.getText()) >= 1)) {
                 return true;
             } else return false;
